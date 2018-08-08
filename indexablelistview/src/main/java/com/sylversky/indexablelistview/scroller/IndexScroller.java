@@ -39,6 +39,8 @@ abstract class IndexScroller {
 	private float mDensity;
 	private float mScaledDensity;
 	private float mAlphaRate;
+	private int mColorBackground;
+	private int mColorText;
 	private int mState = STATE_HIDDEN;
 	private int mListViewWidth;
 	private int mListViewHeight;
@@ -72,7 +74,12 @@ abstract class IndexScroller {
 		
 		// mAlphaRate determines the rate of opacity
 		Paint indexbarPaint = new Paint();
-		indexbarPaint.setColor(Color.BLACK);
+		if(mColorBackground!=null){
+			indexbarPaint.setColor(mColorBackground);
+		}
+		else{
+			indexbarPaint.setColor(Color.BLACK);
+		}
 		indexbarPaint.setAlpha((int) (64 * mAlphaRate));
 		indexbarPaint.setAntiAlias(true);
 		canvas.drawRoundRect(mIndexbarRect, 5 * mDensity, 5 * mDensity, indexbarPaint);
@@ -108,6 +115,12 @@ abstract class IndexScroller {
 			
 			Paint indexPaint = new Paint();
 			indexPaint.setColor(Color.WHITE);
+			if(mColorText!=null){
+				indexbarPaint.setColor(mColorText);
+			}
+			else{
+				indexbarPaint.setColor(Color.BLACK);
+			}
 			indexPaint.setAlpha((int) (255 * mAlphaRate));
 			indexPaint.setAntiAlias(true);
 			indexPaint.setTextSize(12 * mScaledDensity);
